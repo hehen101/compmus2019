@@ -1,13 +1,13 @@
 # *Throwbacktime!*
 
-*Introduction* 
+### *Introduction* 
 
 Have you ever listened to a song and you knew exactly in what kind of situation you listenend to it before? Did you ever get the feeling that a certain song was connected to a special moment and if you listen to it you could immediatly tell when it was? Did you ever remembered the feeling you felt during that one special song and it felt like a throw-back, remembering the feeling, the thoughts, the circumstances? 
 I started this project with thinking about what I am interested in and what kind of music I listen to the most. After a while I decided that I wanted to work with popular music, since this is the genre that I have been listening to for years - at least in my freetime at home. So I decided to have a look at the charts from 2000 and 2018 because I thought in these 18 years there has been a huge change when it comes to popular music, especially taking in account the major hip hop/rap rise with "Drake", "XXXTension", "Post Malone" and so on. After comparing the Billboard Top Charts from 2000 to the songs from 2018 I realized that this two playlists didn't satisfied what I had in mind. So I decided to change my project from this to a rather personal, based on selfmade playlists project. I have been using Spotify for years now, listening to music for ceveral hours every day; I love the variety of music, the ability of creating your own playlists, the premium account with no ads, better sound quality and of course the ability to download playlists which allows me to listen to my playlists anytime anywhere. 
 
 I made my first own playlist in January 2014 and ever since continued to make in irregular intervals new ones, containing new but sometimes also songs which I had listened to in previous playlists. I would simple name the playlist like the month I made it in and select different songs from my old playlists or playlists Spotify suggested to me. After I while, when I didn't like the music anymore or got bored by it I would make a new one. Espacially in the last two-three years I started using Spotify on a regular basis, listening to music on my phone and laptop, sometimes just as a quiet background music, however more often espacially for the purpose of enjoying it, which is the reason why I have chosen playlists from 2016 and 2018. Every now and then I listen to my old playlists and like to remember what happened during the time I would listen to it the most. With some songs I had the sensation they were somehow connected to one special moment, one special feeling and listening to it would make me feel like it did back then. Espcially in the last few mentioned years I experienced a lot of unique events which is why decided to have a closer look at them and see if my music tastes has changed. 
 
-# Content of the playlists 
+## Content of the playlists 
 
 *2016*
 
@@ -17,8 +17,9 @@ The playlist contains mostly songs which were popular back in that year. It also
 
 For the playlists in 2018 I used the same methods. Again I went to "Rock am Ring", this time big rock bands like "Rise Against", "Foo Fighters" and "Muse" made it into various playlist but also other bands from the festival like "Walking on Cars" and the german rapper "Casper" got added. Additionally, some more soft artists, more or less from the Indiegenre and some more rock bands catched my eay. My music taste varied a lot last year - I had some month were I would only listen to music one could descripe as soft and girly like whereas in other months most of the songs were made by rock and alternative bands like "Starset" and "Mayday Parade". This playlists contains 397 songs. 
 
-# Analysis
+## Analysis
 Throughout the whole analysis one thing keeped remaining: There was always a huge gap between the lowest and the highest easurement. 
 Let's have a closer look into this: The first feature Spotify offers us is the danceability. The lowest number in the 2016 playlist was assigned to "Happy Endings Are Stories That Haven't Ended Yet" by "Mayday Parade" with 0,165 , the highest to "Emanuela" by "Fettes Brot" with 0,909. In 2018 the lowest measurement was found for "Look Up and See Infinity, Look Down and See Nothing" by "Mayday Parade" and the highest for "Bilder mit Katze" by "Frittenbude" with 0,917. I found it really interesting that "Mayday Parade" showed up twice for the lowest measurement and in fact will accure several times for other features as well. The summarize revealed the maximum at 0,565 and the minimum at 0,155 for 2016, for 2018 it was 0,562 for the maximum and 0,139 for the minimum. 
 Another feature we can have a look at is Energy. Looking at the lowest numbers in 2016 we see that "Beautiful Mistake" by "Michael Schulte" is at 0,181 whereas we will find 0,0287 assigned to "Sister" by "Haux". Remarkable about this number is that the difference between the two years is rather big. Another big gap can be found between the lowest tempo in the two years. In 2016 it was "Fallen" by "Volbeat" with 71,832 whereas in the year 2018 it was "Worthy of you" by "Plested" with 57,523. 
 The song which almost fulfilled the maximum for one feature was "Jein" by "Fettes Brot" with a measurement of 0,969.
+
