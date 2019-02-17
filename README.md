@@ -26,3 +26,6 @@ The song which almost fulfilled the maximum for one feature was "Jein" by "Fette
 ![2016](https://user-images.githubusercontent.com/47367941/52919968-27ae4c80-3308-11e9-99bf-0b8f7b6796cc.png)
 
 ![2018](https://user-images.githubusercontent.com/47367941/52919983-4876a200-3308-11e9-9e4f-9ea1a5c2580d.png)
+
+![beide](https://user-images.githubusercontent.com/47367941/52920070-0b5edf80-3309-11e9-9b1e-22ef0f042070.png)
+
