@@ -23,3 +23,5 @@ Let's have a closer look into this: The first feature Spotify offers us is the d
 Another feature we can have a look at is Energy. Looking at the lowest numbers in 2016 we see that "Beautiful Mistake" by "Michael Schulte" is at 0,181 whereas we will find 0,0287 assigned to "Sister" by "Haux". Remarkable about this number is that the difference between the two years is rather big. Another big gap can be found between the lowest tempo in the two years. In 2016 it was "Fallen" by "Volbeat" with 71,832 whereas in the year 2018 it was "Worthy of you" by "Plested" with 57,523. 
 The song which almost fulfilled the maximum for one feature was "Jein" by "Fettes Brot" with a measurement of 0,969.
 
+![2016](https://user-images.githubusercontent.com/47367941/52919968-27ae4c80-3308-11e9-99bf-0b8f7b6796cc.png)
+
