@@ -1,4 +1,4 @@
-# *Pop Hits
+# *Pop Hits*
 
 *Introduction* 
 
@@ -11,3 +11,7 @@ I made my first own playlist in January 2014 and ever since continued to make in
 
 First, I will explain the content of my 2016 playlist and afterwards move on the recent, 2018 made one. The playlist contains mostly songs which were popular back in that year. It also contains a lot of german music because I went to a small festival organized by a german band ("Kraftklub") with a lot of german artists, for example "Casper", "Prinz Pi" and "Frittenbude". Furthermore, there are quite a lot of rock socks since I went to another festival which is called "Rock am Ring". As the name already suggestes most of the artists are from the rock genre, like "Bring me the Horizon", "Volbeat" and "Billy Talent", but there are also a few german rappers, for example "Alligatoah", and pop bands, e.g. "Major Lazor" or "Panic! at the Disco". Before I went to the festivals mentioned above I listened to playlists I made containing all the artists that I liked and wanted to see. Lastly, I added throughout the year some songs Spotify would recommened to me or songs that I found "by accident" for example by clicking on a random song or songs people would tell me about.
 For the playlists in 2018 I used the same methods. Again I went to "Rock am Ring", this time big rock bands like "Rise Against", "Foo Fighters" and "Muse" made it into various playlist but also other bands from the festival like "Walking on Cars" and the german rapper "Casper" got added. Additionally, some more soft artists, more or less from the Indiegenre and some more rock bands catched my eay. My music taste varied a lot last year - I had some month were I would only listen to music one could descripe as soft and girly like whereas in other months most of the songs were made by rock and alternative bands like "Starset" and "Mayday Parade".  
+
+# Analysis
+
+
