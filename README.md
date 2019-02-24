@@ -1,11 +1,3 @@
----
-title: "Week 8 · Chroma Features"
-author: "Helen Hense"
-date: "22 February 2019"
-output: 
-    html_notebook:
-        theme: flatly
----
 
 # *Throwbacktime!*
 
