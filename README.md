@@ -1,3 +1,9 @@
+---
+title: "Storyboard"
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+---
 
 # *Throwbacktime!*
 
