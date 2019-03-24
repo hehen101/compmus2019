@@ -1,0 +1,277 @@
+---
+title: "Throwbacktime"
+author: "Helen Hense"
+date: "22 February 2019"
+output: 
+  flexdashboard::flex_dashboard:
+    storyboard: true
+    theme: flatly
+---
+
+```{r, cache = FALSE}
+devtools::install_github('charlie86/spotifyr')
+devtools::install_github('jaburgoyne/compmus')
+library(tidyverse)
+library(spotifyr)
+library(compmus)
+library(plotly)
+library(flexdashboard)
+library(rsample)
+library(recipes)
+library(parsnip)
+library(yardstick)
+library(ggdendro)
+library(protoclust)
+source('Spotify.R')
+```
+
+### Introduction
+  
+Have you ever listened to a song and you knew exactly in what kind of situation you listenend to it before? Did you ever get the feeling that a certain song was connected to a special moment and if you listen to it you could immediatly tell when it was? Did you ever remembered the feeling you felt during that one special song and it felt like a throw-back, remembering the feeling, the thoughts, the circumstances?
+  
+I started this project with thinking about what I am interested in and what kind of music I listen to the most. After a while I decided that I wanted to work with popular music, since this is the genre that I have been listening to for years - at least in my freetime at home. So I decided to have a look at the charts from 2000 and 2018. After comparing the Billboard Top Charts from 2000 to the songs from 2018 I realized that this two playlists didn't satisfied what I had in mind. So I decided to change my project from this to a rather personal, based on selfmade playlists project. I have been using Spotify for years now, listening to music for ceveral hours every day; I love the variety of music, the ability of creating your own playlists, the premium account with no ads, better sound quality and of course the ability to download playlists which allows me to listen to my playlists anytime anywhere.
+
+I made my first own playlist in January 2014 and ever since continued to make in irregular intervals new ones, containing new but sometimes also songs which I had listened to in previous playlists. I would simple name the playlist like the month I made it in and select different songs from my old playlists or playlists Spotify suggested to me. After I while, when I didn't like the music anymore or got bored by it I would make a new one. Espacially in the last two-three years I started using Spotify on a regular basis, listening to music on my phone and laptop, sometimes just as a quiet background music, however more often espacially for the purpose of enjoying it, which is the reason why I have chosen playlists from 2016 and 2018. Every now and then I listen to my old playlists and like to remember what happened during the time I would listen to it the most. With some songs I had the sensation they were somehow connected to one special moment, one special feeling and listening to it would make me feel like it did back then. Espcially in the last few mentioned years I experienced a lot of unique events which is why decided to have a closer look at them. With this project, I will try to see if and how my music taste has changed, keeping in mind which events I connect to certain songs.
+  
+```{r}
+```
+### Content of the playlists 
+
+- **2016**
+
+The playlist contains mostly songs which were popular back in that year. It also contains a lot of german music because I went to a small festival organized by a german band ("Kraftklub") with a lot of german artists, for example "Casper", "Prinz Pi" and "Frittenbude". Furthermore, there are quite a lot of rock songs since I went to another festival which is called "Rock am Ring". As the name already suggestes most of the artists are from the rock genre, like "Bring me the Horizon", "Volbeat" and "Billy Talent", but there are also a few german rappers, for example "Alligatoah", and pop bands, e.g. "Major Lazor" or "Panic! at the Disco". Before I went to the festivals mentioned above I listened to playlists I made containing all the artists that I liked and wanted to see. Lastly, I added throughout the year some songs Spotify would recommened to me or songs that I found "by accident" for example by clicking on a random song or songs people would tell me about. The playlist contains 508 songs.
+
+```{r}
+valueBox(value = "508", caption = "Songs in the playlist", icon = "fa-headphones", color = "red")
+```
+
+- **2018**
+
+For the playlists in 2018 I used the same methods. Again I went to "Rock am Ring", this time big rock bands like "Rise Against", "Foo Fighters" and "Muse" made it into various playlist but also other bands from the festival like "Walking on Cars" and the german rapper "Casper" got added. Additionally, some more soft artists, more or less from the Indiegenre and some more rock bands catched my eay. My music taste varied a lot last year - I had some month were I would only listen to music one could descripe as soft and girly like whereas in other months most of the songs were made by rock and alternative bands like "Starset" and "Mayday Parade". This playlists contains 397 songs. 
+
+```{r}
+valueBox(value = "508", caption = "Songs in the playlist", icon = "fa-headphones", color = "red")
+```
+
+### Comparison
+
+```{r}
+
+zweisechs <- get_playlist_audio_features('helenhense','04p2OmKrUTiuDEiHZ1kTwa')
+zweiacht <- get_playlist_audio_features('helenhense','2ghNE1Ph4QjLdFwaKMgam5')
+
+zusammen <- 
+  zweisechs %>% mutate(playlist = "2016") %>%
+  bind_rows(zweiacht %>% mutate(playlist = "2018"))
+
+vergleich <- 
+  zusammen %>%
+  ggplot(aes(x = danceability, y = energy, size = acousticness, label = artist_name, label2 = track_name)) + 
+  geom_point(alpha = 0.5, colour = "darkred")  +
+  facet_wrap(~ playlist) +
+  scale_x_continuous(         
+      limits = c(0, 1),
+      breaks = c(0, 0.25, 0.50, 0.75, 1),  
+      minor_breaks = NULL
+      ) +
+  scale_y_continuous(          
+    limits = c(0, 1),
+    breaks = c(0, 0.25, 0.50, 0.75, 1),
+    minor_breaks = NULL
+    ) +
+  theme_linedraw() +
+  labs( 
+    x = "Danceability",
+    y = "Energy"
+  ) 
+ggplotly(vergleich)
+```
+
+***
+
+In this two visualizations you can see the danceability on the x-asis and the energy on the y-asis for my personal playlists from 2016 and 2018. The size shows us the acousticness.
+There is a clear connection between the energy and the acousticness. The higher the energy, the lower the acousticness, which is no surprise to me: Songs which are slower and therefore have a lower energy tend to have more acoustic influence. This applies to both of the playlists.
+(Side note: I have the label for the y-asis, but for some reason it won't show it, I'm still working on that)
+
+
+```{r}
+```
+### Analysis
+Throughout the whole analysis one thing keeped remaining: There was always a huge gap between the lowest and the highest measurement. 
+Let's have a closer look into this: The first feature Spotify offers us is the danceability. The danceability was rather interesting for me because I thought there might be a huge difference between the years. As I mentioned above, I went to two festivals in 2016 which had a lot of rock and rap music. In my opinion these genres are less danceable than popsongs. The lowest number in the 2016 playlist was assigned to "Happy Endings Are Stories That Haven't Ended Yet" by "Mayday Parade" with 0,165 , the highest to "Emanuela" by "Fettes Brot" with 0,909. In 2018 the lowest measurement was found for "Look Up and See Infinity, Look Down and See Nothing" by "Mayday Parade" and the highest for "Bilder mit Katze" by "Frittenbude" with 0,917. I found it really interesting that "Mayday Parade" showed up twice for the lowest measurement and in fact will accure several times for other features as well. The summarize revealed the maximum at 0,565 and the minimum at 0,155 for 2016, for 2018 it was 0,562 for the maximum and 0,139 for the minimum. 
+
+Another feature we can have a look at in the visualization is energy. Looking at the lowest numbers in 2016 we see that "Beautiful Mistake" by "Michael Schulte" is at 0,181 whereas we will find 0,0287 assigned to "Sister" by "Haux". Remarkable about this number is that the difference between the two years is rather big. Another big gap can be found between the lowest tempo in the two years. In 2016 it was "Fallen" by "Volbeat" with 71,832 whereas in the year 2018 it was "Worthy of you" by "Plested" with 57,523. 
+The song which almost fulfilled the maximum for one feature was "Jein" by "Fettes Brot" with a measurement of 0,969.
+
+### Chroma feature and timbre: Outlier - Look Up And See Infinity, Look Down And See Nothing
+
+```{r}
+lookup <- 
+    get_tidy_audio_analysis('2OtadXAUMwnv7zyZEiqq7q') %>% 
+    compmus_align(bars, segments) %>% 
+    select(bars) %>% unnest(bars) %>% 
+    mutate(
+        pitches = 
+            map(segments, 
+                compmus_summarise, pitches, 
+                method = 'acentre', norm = 'manhattan')) %>% 
+    mutate(
+        timbre = 
+            map(segments, 
+                compmus_summarise, timbre, 
+                method = 'mean'))
+lookupplot <- 
+    bind_rows(
+        lookup %>% compmus_self_similarity(pitches, 'aitchison') %>% mutate(d = d / max(d), type = "Chroma"),
+        lookup %>% compmus_self_similarity(timbre, 'euclidean') %>% mutate(d = d / max(d), type = "Timbre")) %>% 
+    ggplot(
+        aes(
+            x = xstart + xduration / 2, 
+            width = xduration,
+            y = ystart + yduration / 2,
+            height = yduration,
+            fill = d)) + 
+    geom_tile() +
+    coord_fixed() +
+    facet_wrap(~ type) +
+    scale_fill_viridis_c(option = 'E', guide = 'none') +
+    theme_classic() +
+    labs(x = '', y = '')
+lookupplot
+```
+
+
+***
+
+
+I have chosen one of the outliners for the chroma feature which is "Look Up And See Infinity, Look Down And See Nothing" by "Mayday Parade". This song has one of the lowest danceability, energy, liveness and valence measurements which makes it one of the sadest and slowest songs. It appears in both of my playlists since the band is one of my favorites. 
+
+### Tonal analysis
+
+```{r}
+circshift <- function(v, n) {if (n == 0) v else c(tail(v, n), head(v, -n))}
+                                    
+major_key <- 
+    c(6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88)
+minor_key <-
+    c(6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17)
+key_templates <-
+    tribble(
+        ~name    , ~template,
+        'Gb:maj', circshift(major_key,  6),
+        'Bb:min', circshift(minor_key, 10),
+        'Db:maj', circshift(major_key,  1),
+        'F:min' , circshift(minor_key,  5),
+        'Ab:maj', circshift(major_key,  8),
+        'C:min' , circshift(minor_key,  0),
+        'Eb:maj', circshift(major_key,  3),
+        'G:min' , circshift(minor_key,  7),
+        'Bb:maj', circshift(major_key, 10),
+        'D:min' , circshift(minor_key,  2),
+        'F:maj' , circshift(major_key,  5),
+        'A:min' , circshift(minor_key,  9),
+        'C:maj' , circshift(major_key,  0),
+        'E:min' , circshift(minor_key,  4),
+        'G:maj' , circshift(major_key,  7),
+        'B:min' , circshift(minor_key, 11),
+        'D:maj' , circshift(major_key,  2),
+        'F#:min', circshift(minor_key,  6),
+        'A:maj' , circshift(major_key,  9),
+        'C#:min', circshift(minor_key,  1),
+        'E:maj' , circshift(major_key,  4),
+        'G#:min', circshift(minor_key,  8),
+        'B:maj' , circshift(major_key, 11),
+        'D#:min', circshift(minor_key,  3))
+alles_ist_erleuchtet <- 
+    get_tidy_audio_analysis('3e0mpxrpVrWj27EpEzs6ZV') %>% 
+    compmus_align(sections, segments) %>% 
+    select(sections) %>% unnest(sections) %>% 
+    mutate(
+        pitches = 
+            map(segments, 
+                compmus_summarise, pitches, 
+                method = 'acentre', norm = 'manhattan')) %>% 
+    compmus_match_pitch_template(key_templates, 'aitchison', 'manhattan') %>% 
+    ggplot(
+        aes(x = start + duration / 2, width = duration, y = name, fill = d)) +
+    geom_tile() +
+    scale_fill_viridis_c(option = 'E') +
+    theme_minimal() +
+    labs(x = 'Time (s)', y = '', fill = 'Distance')
+ggplotly(alles_ist_erleuchtet)
+```
+
+*** 
+
+The song I've choosen for the tonal analysis is "Alles ist erleuchtet" by "Casper", who is a german rapper. 
+
+### Classification
+
+*** 
+
+### Neue Aufgabe
+
+
+```{r}
+halloween <- 
+    get_playlist_audio_features('bnfcollection', '1vsoLSK3ArkpaIHmUaF02C') %>% 
+    add_audio_analysis %>% 
+    mutate(
+        segments = 
+            map2(segments, key, compmus_c_transpose)) %>% 
+    mutate(
+        pitches = 
+            map(segments, 
+                compmus_summarise, pitches, 
+                method = 'mean', norm = 'manhattan'),
+        timbre =
+            map(
+                segments,
+                compmus_summarise, timbre,
+                method = 'mean')) %>% 
+    mutate(pitches = map(pitches, compmus_normalise, 'clr')) %>% 
+    mutate_at(vars(pitches, timbre), map, bind_rows) %>% 
+    unnest(pitches, timbre)
+```
+
+```{r}
+halloween_juice <- 
+    recipe(track_name ~
+               danceability +
+               energy +
+               loudness +
+               speechiness +
+               acousticness +
+               instrumentalness +
+               liveness +
+               valence +
+               tempo +
+               duration_ms +
+               C + `C#|Db` + D + `D#|Eb` +
+               E + `F` + `F#|Gb` + G +
+               `G#|Ab` + A + `A#|Bb` + B +
+               c01 + c02 + c03 + c04 + c05 + c06 +
+               c07 + c08 + c09 + c10 + c11 + c12,
+           data = halloween) %>% 
+    step_center(all_predictors()) %>%
+    step_scale(all_predictors()) %>%
+    # step_range(all_predictors()) %>% 
+    prep(halloween %>% mutate(track_name = str_trunc(track_name, 20))) %>% 
+    juice %>% 
+    column_to_rownames('track_name')
+```
+
+```{r}
+halloween_dist <- dist(halloween_juice, method = 'euclidean')
+```
+
+```{r}
+hclust(halloween_dist, method = 'single') %>% dendro_data %>% ggdendrogram
+```
+
+### Conclusion
+
+```{r}
+```
+As we can see in the visualisation the dots for the year 2018 are way more spreaded than they were in 2016. There are a few dots who are a little bit more on the outside but there are no extreme outliners. The data for 2016 shows that most of the songs are very high in danceability and energy, whereas in 2018 it seems to be more or less even - half of the songs are above 0.5 when it comes to danceability and energy - let's have a closer look at this. In the 2016 playlist 466 out of 508 songs (91,55%) made it above 0,5 whereas in 2018 it was only 284 out of 397 (71,53%). If we look at the measurement above 0.75 the difference becomes even more clear: 277 songs (54,53 %) in 2016 , whereas in 2018 there were only 129 songs (34,49%). And now the danceability: In 2016 there were 277 songs (69,77%) above 0.5, in 2018 only 279 (54,81%) made it. It is very clear that both, danceability and energy, sunk within two years. The data provides an indication of slightly shifts in musical taste over the years. 
+In my opinion the danceability sunk because the 2018 playlist contains many rock songs, whereas the 2016 contains more popsongs. It was a surprise though that the energy sank, too. I would have suggested that it would rise since in my opinion rock songs are more energetic and louder than pop- or indiesongs. 
